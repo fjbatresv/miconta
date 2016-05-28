@@ -1,0 +1,33 @@
+
+{% extends "::base.html.twig" %}
+
+{% block stylesheets %}    {{ parent() }}
+    {% endblock stylesheets %}
+
+{% block javascripts %}    {{ parent() }}
+    {% endblock javascripts %}    {% block title %}
+        {{ parent() }} - {% trans from "Admin" %}Usarios{% endtrans %}
+    {% endblock title %}
+{% block body %}
+<div class="nav-tabs-custom">
+                <ul class="nav nav-tabs pull-right">
+                    <li><a href="#tab_2-2" data-toggle="tab">Filtrar</a></li>             
+                  <li class="active"><a href="#tab_1-1" data-toggle="tab">Listado</a></li>     
+                  <li class="pull-left header"><i class="fa fa-th"></i>    {% block page_title %}
+{% trans from "Admin" %}Usarios{% endtrans %}
+    {% endblock page_title %}
+</li>
+                </ul>
+                <div class="tab-content">
+                  <div class="tab-pane active" id="tab_1-1">{% block list_scopes %}
+{% endblock list_scopes %}
+{% include "MiContaSoporteBundle:UsuarioList:results.html.twig" with {  } %}
+                  </div><!-- /.tab-pane -->
+                  <div class="tab-pane" id="tab_2-2">
+                      {% block filters %}
+                                                {% include "MiContaSoporteBundle:UsuarioList:filters.html.twig" with {  } %}
+                                        {% endblock filters %}
+                  </div><!-- /.tab-pane -->
+                </div><!-- /.tab-content -->
+              </div><!-- nav-tabs-custom -->
+{% endblock body %}

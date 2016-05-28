@@ -1,0 +1,69 @@
+    {% block list_filters %}
+    <form class="form-horizontal" action="{{ path("Metapod_SoporteBundle_Usuario_filters") }}" method="post" {{ form_enctype(form) }} role="form">
+        <div class='box-body'>
+            <legend>Filtrar</legend>
+        {{ form_errors(form) }}
+                                            <div class="form-group">
+                    {{ form_label(form['nombre'], 'Nombre'|trans({}, 'Admin'), {'label_attr':{'class': 'control-label col-sm-2'}}) }}
+                    <div class="col-sm-10" >
+                        {{ form_widget(form['nombre'], {'attr':{'placeholder' : 'nombre'}}) }}
+                        <div class="help-block">
+                            {{ form_errors(form['nombre']) }}
+                        </div>
+                    </div>
+                </div>
+                                                            <div class="form-group">
+                    {{ form_label(form['apellido'], 'Apellido'|trans({}, 'Admin'), {'label_attr':{'class': 'control-label col-sm-2'}}) }}
+                    <div class="col-sm-10" >
+                        {{ form_widget(form['apellido'], {'attr':{'placeholder' : 'apellido'}}) }}
+                        <div class="help-block">
+                            {{ form_errors(form['apellido']) }}
+                        </div>
+                    </div>
+                </div>
+                                                            <div class="form-group">
+                    {{ form_label(form['username'], 'Username'|trans({}, 'Admin'), {'label_attr':{'class': 'control-label col-sm-2'}}) }}
+                    <div class="col-sm-10" >
+                        {{ form_widget(form['username'], {'attr':{'placeholder' : 'username'}}) }}
+                        <div class="help-block">
+                            {{ form_errors(form['username']) }}
+                        </div>
+                    </div>
+                </div>
+                                                            <div class="form-group">
+                    {{ form_label(form['email'], 'Email'|trans({}, 'Admin'), {'label_attr':{'class': 'control-label col-sm-2'}}) }}
+                    <div class="col-sm-10" >
+                        {{ form_widget(form['email'], {'attr':{'placeholder' : 'email'}}) }}
+                        <div class="help-block">
+                            {{ form_errors(form['email']) }}
+                        </div>
+                    </div>
+                </div>
+                                                            <div class="form-group">
+                    {{ form_label(form['direccion'], 'Direccion'|trans({}, 'Admin'), {'label_attr':{'class': 'control-label col-sm-2'}}) }}
+                    <div class="col-sm-10" >
+                        {{ form_widget(form['direccion'], {'attr':{'placeholder' : 'direccion'}}) }}
+                        <div class="help-block">
+                            {{ form_errors(form['direccion']) }}
+                        </div>
+                    </div>
+                </div>
+                                                            <div class="form-group">
+                    {{ form_label(form['EstadoUsuario'], 'Estado'|trans({}, 'Admin'), {'label_attr':{'class': 'control-label col-sm-2'}}) }}
+                    <div class="col-sm-10" >
+                        {{ form_widget(form['EstadoUsuario'], {'attr':{'placeholder' : 'EstadoUsuario'}}) }}
+                        <div class="help-block">
+                            {{ form_errors(form['EstadoUsuario']) }}
+                        </div>
+                    </div>
+                </div>
+                                        {{ form_rest(form) }}
+        </div>
+        <div class="box-footer">
+            <div class="col-md-offset-3 col-md-9">
+                <button type="submit" class="btn btn-small btn-primary"><i class="fa fa-search"></i> Filtrar</button>
+                <button type="submit" class="btn btn-small" name="reset" value="true"><i class="fa fa-refresh"></i> Reajustar</button>
+            </div>
+        </div>
+    </form>
+    {% endblock list_filters %}

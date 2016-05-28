@@ -1,0 +1,167 @@
+
+    {% block form %}
+    <form class="form-horizontal"
+        {% if Usuario.Id %}
+            action="{{ path("MiConta_SoporteBundle_Usuario_update", { 'pk': Usuario.Id }) }}"
+        {% else %}
+            action="{{ path("MiConta_SoporteBundle_Usuario_create") }}"
+        {% endif %}
+        method="post" {{ form_enctype(form) }} role="form">
+
+        {{ form_errors(form) }}
+                    {% block form_fieldset_NONE %}
+    <div class="box-body">
+                                    <div class="row">
+                                                                    
+                        <div class="col-md-12 form_field field_text field_nombre">
+                            <div class="form-group">
+                                {{ form_label(form['nombre'], 'Nombre'|trans({}, 'Admin'), {'label_attr':{'class': 'control-label col-md-3'}}) }}
+                                <div class="col-md-9" >
+                                    {{ form_widget(form['nombre'], {'attr':{'placeholder' : 'nombre'}}) }}
+                                    <div class="help-block">
+                                    
+                                        <div class="has-error">{{ form_errors(form['nombre']) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                                            </div>
+                            <div class="row">
+                                                                    
+                        <div class="col-md-12 form_field field_text field_apellido">
+                            <div class="form-group">
+                                {{ form_label(form['apellido'], 'Apellido'|trans({}, 'Admin'), {'label_attr':{'class': 'control-label col-md-3'}}) }}
+                                <div class="col-md-9" >
+                                    {{ form_widget(form['apellido'], {'attr':{'placeholder' : 'apellido'}}) }}
+                                    <div class="help-block">
+                                    
+                                        <div class="has-error">{{ form_errors(form['apellido']) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                                            </div>
+                            <div class="row">
+                                                                    
+                        <div class="col-md-12 form_field field_text field_username">
+                            <div class="form-group">
+                                {{ form_label(form['username'], 'Username'|trans({}, 'Admin'), {'label_attr':{'class': 'control-label col-md-3'}}) }}
+                                <div class="col-md-9" >
+                                    {{ form_widget(form['username'], {'attr':{'placeholder' : 'username'}}) }}
+                                    <div class="help-block">
+                                    
+                                        <div class="has-error">{{ form_errors(form['username']) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                                            </div>
+                            <div class="row">
+                                                                    
+                        <div class="col-md-12 form_field field_text field_email">
+                            <div class="form-group">
+                                {{ form_label(form['email'], 'Email'|trans({}, 'Admin'), {'label_attr':{'class': 'control-label col-md-3'}}) }}
+                                <div class="col-md-9" >
+                                    {{ form_widget(form['email'], {'attr':{'placeholder' : 'email'}}) }}
+                                    <div class="help-block">
+                                    
+                                        <div class="has-error">{{ form_errors(form['email']) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                                            </div>
+                            <div class="row">
+                                                                    
+                        <div class="col-md-12 form_field field_text field_direccion">
+                            <div class="form-group">
+                                {{ form_label(form['direccion'], 'Direccion'|trans({}, 'Admin'), {'label_attr':{'class': 'control-label col-md-3'}}) }}
+                                <div class="col-md-9" >
+                                    {{ form_widget(form['direccion'], {'attr':{'placeholder' : 'direccion'}}) }}
+                                    <div class="help-block">
+                                    
+                                        <div class="has-error">{{ form_errors(form['direccion']) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                                            </div>
+                            <div class="row">
+                                                                    
+                        <div class="col-md-12 form_field field_text field_fecha_nacimiento">
+                            <div class="form-group">
+                                {{ form_label(form['fecha_nacimiento'], 'Fecha nacimiento'|trans({}, 'Admin'), {'label_attr':{'class': 'control-label col-md-3'}}) }}
+                                <div class="col-md-9" >
+                                    {{ form_widget(form['fecha_nacimiento'], {'attr':{'placeholder' : 'fecha_nacimiento'}}) }}
+                                    <div class="help-block">
+                                    
+                                        <div class="has-error">{{ form_errors(form['fecha_nacimiento']) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                                            </div>
+                            <div class="row">
+                                                                    
+                        <div class="col-md-12 form_field field_model field_EstadoUsuario">
+                            <div class="form-group">
+                                {{ form_label(form['EstadoUsuario'], 'Estado'|trans({}, 'Admin'), {'label_attr':{'class': 'control-label col-md-3'}}) }}
+                                <div class="col-md-9" >
+                                    {{ form_widget(form['EstadoUsuario'], {'attr':{'placeholder' : 'EstadoUsuario'}}) }}
+                                    <div class="help-block">
+                                    
+                                        <div class="has-error">{{ form_errors(form['EstadoUsuario']) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                                            </div>
+                    </div>
+        {% endblock form_fieldset_NONE %}
+        
+        
+        {{ form_rest(form) }}
+
+        {% block form_buttons %}
+        <div class="box-footer">
+                <center>
+                {% block generic_actions %}
+                        {% block generic_action_save_and_list %}
+            
+                
+                            
+            <button type="submit" name="save-and-list" class="btn btn-success"><i class="fa fa-save"></i> {% trans from "Admingenerator" %}action.generic.save-and-list{% endtrans %}
+        </button>
+    
+
+                
+                        {% endblock generic_action_save_and_list %}
+                    {% block generic_action_list %}
+            
+                
+                            
+            <a class="btn btn-danger" href="{{ path("MiConta_SoporteBundle_Usuario_list", {}) }}"><i class="fa fa-undo"></i> {% trans from "Admingenerator" %}action.generic.list{% endtrans %}
+        </a>
+    
+
+                
+                        {% endblock generic_action_list %}
+        
+        {% block generic_actions_script %}
+    <script src="{{ asset("bundles/admingeneratorgenerator/js/admingenerator/generic-actions.js") }}"></script>
+    <script type="text/javascript">
+        ;(function(window, $, undefined) {
+            $("#generic_actions").agen$genericActions({
+                actionsSelector: 'a.btn'
+            });
+        })(this, jQuery);
+    </script>
+{% endblock generic_actions_script %}
+
+    {% endblock generic_actions %}
+
+                </center>
+        </div>
+        {% endblock form_buttons %}
+    </form>
+    {% endblock form %}

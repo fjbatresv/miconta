@@ -1,0 +1,335 @@
+
+{% extends "::base.html.twig" %}
+
+{% block stylesheets %}    {{ parent() }}
+    {% endblock stylesheets %}
+
+{% block javascripts %}    {{ parent() }}
+        {% block object_actions_script %}
+        {% endblock object_actions_script %}
+{% endblock javascripts %}    {% block title %}
+        {{ parent() }} - {% trans with {'%object%': Usuario.username,} from "Admin" %}You're viewing the object "%object%"{% endtrans %}
+    {% endblock title %}
+{% block body %}    {% block page_title %}
+{% trans with {'%object%': Usuario.username,} from "Admin" %}You're viewing the object "%object%"{% endtrans %}
+    {% endblock page_title %}
+<div class="container-fluid">
+	    <div class="row object-actions-Usuario">
+	        <div class="col-md-12">    {% block object_actions %}
+        {% endblock object_actions %}
+</div>
+	    </div>
+
+	    <div class="row">
+	        {% block form_tabs %}
+{% endblock form_tabs %}
+
+	                {% block show %}
+    {% block object %}
+                <fieldset class="form_block form_fieldset_NONE tab-pane">
+            
+                        <div class="row">
+                                                        
+                    <div class="col-md-2 text-right">
+                    {% block show_column_label_id %}<strong>{{ 'Id'|trans({}, 'Admin') }}</strong>{% endblock show_column_label_id %}
+                    </div>
+
+                    <div class="col-md-10">
+                        <div class="form-group form_field field_id">
+                        {% block show_column_id %}{{ Usuario.id }}{% endblock show_column_id %}
+                        </div>
+                    </div>
+                                                </div>
+                        <div class="row">
+                                                        
+                    <div class="col-md-2 text-right">
+                    {% block show_column_label_nombre %}<strong>{{ 'Nombre'|trans({}, 'Admin') }}</strong>{% endblock show_column_label_nombre %}
+                    </div>
+
+                    <div class="col-md-10">
+                        <div class="form-group form_field field_nombre">
+                        {% block show_column_nombre %}{{ Usuario.nombre }}{% endblock show_column_nombre %}
+                        </div>
+                    </div>
+                                                </div>
+                        <div class="row">
+                                                        
+                    <div class="col-md-2 text-right">
+                    {% block show_column_label_email %}<strong>{{ 'Email'|trans({}, 'Admin') }}</strong>{% endblock show_column_label_email %}
+                    </div>
+
+                    <div class="col-md-10">
+                        <div class="form-group form_field field_email">
+                        {% block show_column_email %}{{ Usuario.email }}{% endblock show_column_email %}
+                        </div>
+                    </div>
+                                                </div>
+                        <div class="row">
+                                                        
+                    <div class="col-md-2 text-right">
+                    {% block show_column_label_salt %}<strong>{{ 'Salt'|trans({}, 'Admin') }}</strong>{% endblock show_column_label_salt %}
+                    </div>
+
+                    <div class="col-md-10">
+                        <div class="form-group form_field field_salt">
+                        {% block show_column_salt %}{{ Usuario.salt }}{% endblock show_column_salt %}
+                        </div>
+                    </div>
+                                                </div>
+                        <div class="row">
+                                                        
+                    <div class="col-md-2 text-right">
+                    {% block show_column_label_apellido %}<strong>{{ 'Apellido'|trans({}, 'Admin') }}</strong>{% endblock show_column_label_apellido %}
+                    </div>
+
+                    <div class="col-md-10">
+                        <div class="form-group form_field field_apellido">
+                        {% block show_column_apellido %}{{ Usuario.apellido }}{% endblock show_column_apellido %}
+                        </div>
+                    </div>
+                                                </div>
+                        <div class="row">
+                                                        
+                    <div class="col-md-2 text-right">
+                    {% block show_column_label_username %}<strong>{{ 'Username'|trans({}, 'Admin') }}</strong>{% endblock show_column_label_username %}
+                    </div>
+
+                    <div class="col-md-10">
+                        <div class="form-group form_field field_username">
+                        {% block show_column_username %}{{ Usuario.username }}{% endblock show_column_username %}
+                        </div>
+                    </div>
+                                                </div>
+                        <div class="row">
+                                                        
+                    <div class="col-md-2 text-right">
+                    {% block show_column_label_password %}<strong>{{ 'Password'|trans({}, 'Admin') }}</strong>{% endblock show_column_label_password %}
+                    </div>
+
+                    <div class="col-md-10">
+                        <div class="form-group form_field field_password">
+                        {% block show_column_password %}{{ Usuario.password }}{% endblock show_column_password %}
+                        </div>
+                    </div>
+                                                </div>
+                        <div class="row">
+                                                        
+                    <div class="col-md-2 text-right">
+                    {% block show_column_label_direccion %}<strong>{{ 'Direccion'|trans({}, 'Admin') }}</strong>{% endblock show_column_label_direccion %}
+                    </div>
+
+                    <div class="col-md-10">
+                        <div class="form-group form_field field_direccion">
+                        {% block show_column_direccion %}{{ Usuario.direccion }}{% endblock show_column_direccion %}
+                        </div>
+                    </div>
+                                                </div>
+                        <div class="row">
+                                                        
+                    <div class="col-md-2 text-right">
+                    {% block show_column_label_fecha_nacimiento %}<strong>{{ 'Fecha nacimiento'|trans({}, 'Admin') }}</strong>{% endblock show_column_label_fecha_nacimiento %}
+                    </div>
+
+                    <div class="col-md-10">
+                        <div class="form-group form_field field_fecha_nacimiento">
+                        {% block show_column_fecha_nacimiento %}{% if Usuario.fechaNacimiento %}
+                    {% set datetime_format = "Y-m-d H:i:s" %}
+        
+        {{ Usuario.fechaNacimiento|date(datetime_format) }}
+    {% endif %}{% endblock show_column_fecha_nacimiento %}
+                        </div>
+                    </div>
+                                                </div>
+                        <div class="row">
+                                                        
+                    <div class="col-md-2 text-right">
+                    {% block show_column_label_ultimo_cambio_password %}<strong>{{ 'Ultimo cambio password'|trans({}, 'Admin') }}</strong>{% endblock show_column_label_ultimo_cambio_password %}
+                    </div>
+
+                    <div class="col-md-10">
+                        <div class="form-group form_field field_ultimo_cambio_password">
+                        {% block show_column_ultimo_cambio_password %}{% if Usuario.ultimoCambioPassword %}{% set date_format = "Y-m-d" %}{{ Usuario.ultimoCambioPassword|date(date_format) }}
+    {% endif %}{% endblock show_column_ultimo_cambio_password %}
+                        </div>
+                    </div>
+                                                </div>
+                        <div class="row">
+                                                        
+                    <div class="col-md-2 text-right">
+                    {% block show_column_label_estado_usuario_id %}<strong>{{ 'Estado usuario id'|trans({}, 'Admin') }}</strong>{% endblock show_column_label_estado_usuario_id %}
+                    </div>
+
+                    <div class="col-md-10">
+                        <div class="form-group form_field field_estado_usuario_id">
+                        {% block show_column_estado_usuario_id %}{{ Usuario.estadoUsuarioId }}{% endblock show_column_estado_usuario_id %}
+                        </div>
+                    </div>
+                                                </div>
+                        <div class="row">
+                                                        
+                    <div class="col-md-2 text-right">
+                    {% block show_column_label_record_password %}<strong>{{ 'Record password'|trans({}, 'Admin') }}</strong>{% endblock show_column_label_record_password %}
+                    </div>
+
+                    <div class="col-md-10">
+                        <div class="form-group form_field field_record_password">
+                        {% block show_column_record_password %}{{ Usuario.recordPassword }}{% endblock show_column_record_password %}
+                        </div>
+                    </div>
+                                                </div>
+                        <div class="row">
+                                                        
+                    <div class="col-md-2 text-right">
+                    {% block show_column_label_avatar %}<strong>{{ 'Avatar'|trans({}, 'Admin') }}</strong>{% endblock show_column_label_avatar %}
+                    </div>
+
+                    <div class="col-md-10">
+                        <div class="form-group form_field field_avatar">
+                        {% block show_column_avatar %}{{ Usuario.avatar }}{% endblock show_column_avatar %}
+                        </div>
+                    </div>
+                                                </div>
+                        <div class="row">
+                                                        
+                    <div class="col-md-2 text-right">
+                    {% block show_column_label_conectado %}<strong>{{ 'Conectado'|trans({}, 'Admin') }}</strong>{% endblock show_column_label_conectado %}
+                    </div>
+
+                    <div class="col-md-10">
+                        <div class="form-group form_field field_conectado">
+                        {% block show_column_conectado %}{% if Usuario.conectado %}
+    <i class="glyphicon glyphicon-ok"></i>
+{% else %}
+    <i class="glyphicon glyphicon-remove"></i>
+{% endif %}{% endblock show_column_conectado %}
+                        </div>
+                    </div>
+                                                </div>
+                        <div class="row">
+                                                        
+                    <div class="col-md-2 text-right">
+                    {% block show_column_label_ultima_ip %}<strong>{{ 'Ultima ip'|trans({}, 'Admin') }}</strong>{% endblock show_column_label_ultima_ip %}
+                    </div>
+
+                    <div class="col-md-10">
+                        <div class="form-group form_field field_ultima_ip">
+                        {% block show_column_ultima_ip %}{{ Usuario.ultimaIp }}{% endblock show_column_ultima_ip %}
+                        </div>
+                    </div>
+                                                </div>
+                        <div class="row">
+                                                        
+                    <div class="col-md-2 text-right">
+                    {% block show_column_label_empresa_id %}<strong>{{ 'Empresa id'|trans({}, 'Admin') }}</strong>{% endblock show_column_label_empresa_id %}
+                    </div>
+
+                    <div class="col-md-10">
+                        <div class="form-group form_field field_empresa_id">
+                        {% block show_column_empresa_id %}{{ Usuario.empresaId }}{% endblock show_column_empresa_id %}
+                        </div>
+                    </div>
+                                                </div>
+                        <div class="row">
+                                                        
+                    <div class="col-md-2 text-right">
+                    {% block show_column_label_created_by %}<strong>{{ 'Created by'|trans({}, 'Admin') }}</strong>{% endblock show_column_label_created_by %}
+                    </div>
+
+                    <div class="col-md-10">
+                        <div class="form-group form_field field_created_by">
+                        {% block show_column_created_by %}{{ Usuario.createdBy }}{% endblock show_column_created_by %}
+                        </div>
+                    </div>
+                                                </div>
+                        <div class="row">
+                                                        
+                    <div class="col-md-2 text-right">
+                    {% block show_column_label_updated_by %}<strong>{{ 'Updated by'|trans({}, 'Admin') }}</strong>{% endblock show_column_label_updated_by %}
+                    </div>
+
+                    <div class="col-md-10">
+                        <div class="form-group form_field field_updated_by">
+                        {% block show_column_updated_by %}{{ Usuario.updatedBy }}{% endblock show_column_updated_by %}
+                        </div>
+                    </div>
+                                                </div>
+                        <div class="row">
+                                                        
+                    <div class="col-md-2 text-right">
+                    {% block show_column_label_created_at %}<strong>{{ 'Created at'|trans({}, 'Admin') }}</strong>{% endblock show_column_label_created_at %}
+                    </div>
+
+                    <div class="col-md-10">
+                        <div class="form-group form_field field_created_at">
+                        {% block show_column_created_at %}{% if Usuario.createdAt %}
+                    {% set datetime_format = "Y-m-d H:i:s" %}
+        
+        {{ Usuario.createdAt|date(datetime_format) }}
+    {% endif %}{% endblock show_column_created_at %}
+                        </div>
+                    </div>
+                                                </div>
+                        <div class="row">
+                                                        
+                    <div class="col-md-2 text-right">
+                    {% block show_column_label_updated_at %}<strong>{{ 'Updated at'|trans({}, 'Admin') }}</strong>{% endblock show_column_label_updated_at %}
+                    </div>
+
+                    <div class="col-md-10">
+                        <div class="form-group form_field field_updated_at">
+                        {% block show_column_updated_at %}{% if Usuario.updatedAt %}
+                    {% set datetime_format = "Y-m-d H:i:s" %}
+        
+        {{ Usuario.updatedAt|date(datetime_format) }}
+    {% endif %}{% endblock show_column_updated_at %}
+                        </div>
+                    </div>
+                                                </div>
+                </fieldset>
+        {% endblock object %}
+
+    {% block form_buttons %}
+        <div id="show-actions" class="form-group">
+            <div class="btn-toolbar" role="toolbar">
+                {% block generic_actions %}
+                        {% block generic_action_list %}
+            
+                
+                            
+            <a class="btn btn-danger" href="{{ path("MiConta_SoporteBundle_Usuario_list", {}) }}"><i class="fa fa-undo"></i> {% trans from "Admingenerator" %}action.generic.list{% endtrans %}
+        </a>
+    
+
+                
+                        {% endblock generic_action_list %}
+                    {% block generic_action_new %}
+            
+                
+                            
+            <a class="btn btn-primary" href="{{ path("MiConta_SoporteBundle_Usuario_new", {}) }}"><i class="fa fa-plus"></i> {% trans from "Admingenerator" %}action.generic.new{% endtrans %}
+        </a>
+    
+
+                
+                        {% endblock generic_action_new %}
+        
+        {% block generic_actions_script %}
+    <script src="{{ asset("bundles/admingeneratorgenerator/js/admingenerator/generic-actions.js") }}"></script>
+    <script type="text/javascript">
+        ;(function(window, $, undefined) {
+            $("#generic_actions").agen$genericActions({
+                actionsSelector: 'a.btn'
+            });
+        })(this, jQuery);
+    </script>
+{% endblock generic_actions_script %}
+
+    {% endblock generic_actions %}
+
+            </div>
+        </div>
+    {% endblock form_buttons %}
+{% endblock show %}
+	        	    </div>
+    </div>
+{% endblock body %}

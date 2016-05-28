@@ -1,0 +1,24 @@
+    {% block list_filters %}
+    <form class="form-horizontal" action="{{ path("MiConta_SoporteBundle_Perfil_filters") }}" method="post" {{ form_enctype(form) }} role="form">
+        <div class='box-body'>
+            <legend>Filtrar</legend>
+        {{ form_errors(form) }}
+                                            <div class="form-group">
+                    {{ form_label(form['nombre'], 'Nombre'|trans({}, 'Admin'), {'label_attr':{'class': 'control-label col-sm-2'}}) }}
+                    <div class="col-sm-10" >
+                        {{ form_widget(form['nombre'], {'attr':{'placeholder' : 'nombre'}}) }}
+                        <div class="help-block">
+                            {{ form_errors(form['nombre']) }}
+                        </div>
+                    </div>
+                </div>
+                                        {{ form_rest(form) }}
+        </div>
+        <div class="box-footer">
+            <div class="col-md-offset-3 col-md-9">
+                <button type="submit" class="btn btn-small btn-primary"><i class="fa fa-search"></i> Filtrar</button>
+                <button type="submit" class="btn btn-small" name="reset" value="true"><i class="fa fa-refresh"></i> Reajustar</button>
+            </div>
+        </div>
+    </form>
+    {% endblock list_filters %}
