@@ -29,6 +29,7 @@ class LoginController extends Controller {
             $sesion = $request->getSession();
             if ($form->isValid()) {
                 $valores = $form->getData();
+                echo hash('sha1', $valores['pass']);
                 $comprobacion = UsuarioQuery::create()
                         ->filterByUsername($valores['usuario'])
                         ->filterByPassword(hash('sha1', $valores['pass']))

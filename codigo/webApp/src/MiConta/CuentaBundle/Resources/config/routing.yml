@@ -1,0 +1,3 @@
+mi_conta_cuenta_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: MiContaCuentaBundle:Default:index }

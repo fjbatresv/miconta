@@ -71,6 +71,13 @@ abstract class BaseUsuario extends BaseObject implements Persistent
     protected $salt;
 
     /**
+     * The value for the skin field.
+     * Note: this column has a database default value of: 'skin-blue'
+     * @var        string
+     */
+    protected $skin;
+
+    /**
      * The value for the apellido field.
      * @var        string
      */
@@ -224,6 +231,7 @@ abstract class BaseUsuario extends BaseObject implements Persistent
      */
     public function applyDefaultValues()
     {
+        $this->skin = 'skin-blue';
         $this->conectado = false;
     }
 
@@ -279,6 +287,17 @@ abstract class BaseUsuario extends BaseObject implements Persistent
     {
 
         return $this->salt;
+    }
+
+    /**
+     * Get the [skin] column value.
+     *
+     * @return string
+     */
+    public function getSkin()
+    {
+
+        return $this->skin;
     }
 
     /**
@@ -658,6 +677,27 @@ abstract class BaseUsuario extends BaseObject implements Persistent
     } // setSalt()
 
     /**
+     * Set the value of [skin] column.
+     *
+     * @param  string $v new value
+     * @return Usuario The current object (for fluent API support)
+     */
+    public function setSkin($v)
+    {
+        if ($v !== null) {
+            $v = (string) $v;
+        }
+
+        if ($this->skin !== $v) {
+            $this->skin = $v;
+            $this->modifiedColumns[] = UsuarioPeer::SKIN;
+        }
+
+
+        return $this;
+    } // setSkin()
+
+    /**
      * Set the value of [apellido] column.
      *
      * @param  string $v new value
@@ -1023,6 +1063,10 @@ abstract class BaseUsuario extends BaseObject implements Persistent
      */
     public function hasOnlyDefaultValues()
     {
+            if ($this->skin !== 'skin-blue') {
+                return false;
+            }
+
             if ($this->conectado !== false) {
                 return false;
             }
@@ -1053,22 +1097,23 @@ abstract class BaseUsuario extends BaseObject implements Persistent
             $this->nombre = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
             $this->email = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
             $this->salt = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
-            $this->apellido = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
-            $this->username = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
-            $this->password = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
-            $this->direccion = ($row[$startcol + 7] !== null) ? (string) $row[$startcol + 7] : null;
-            $this->fecha_nacimiento = ($row[$startcol + 8] !== null) ? (string) $row[$startcol + 8] : null;
-            $this->ultimo_cambio_password = ($row[$startcol + 9] !== null) ? (string) $row[$startcol + 9] : null;
-            $this->estado_usuario_id = ($row[$startcol + 10] !== null) ? (int) $row[$startcol + 10] : null;
-            $this->record_password = ($row[$startcol + 11] !== null) ? (string) $row[$startcol + 11] : null;
-            $this->avatar = ($row[$startcol + 12] !== null) ? (string) $row[$startcol + 12] : null;
-            $this->conectado = ($row[$startcol + 13] !== null) ? (boolean) $row[$startcol + 13] : null;
-            $this->ultima_ip = ($row[$startcol + 14] !== null) ? (string) $row[$startcol + 14] : null;
-            $this->empresa_id = ($row[$startcol + 15] !== null) ? (int) $row[$startcol + 15] : null;
-            $this->created_by = ($row[$startcol + 16] !== null) ? (string) $row[$startcol + 16] : null;
-            $this->updated_by = ($row[$startcol + 17] !== null) ? (string) $row[$startcol + 17] : null;
-            $this->created_at = ($row[$startcol + 18] !== null) ? (string) $row[$startcol + 18] : null;
-            $this->updated_at = ($row[$startcol + 19] !== null) ? (string) $row[$startcol + 19] : null;
+            $this->skin = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
+            $this->apellido = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
+            $this->username = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
+            $this->password = ($row[$startcol + 7] !== null) ? (string) $row[$startcol + 7] : null;
+            $this->direccion = ($row[$startcol + 8] !== null) ? (string) $row[$startcol + 8] : null;
+            $this->fecha_nacimiento = ($row[$startcol + 9] !== null) ? (string) $row[$startcol + 9] : null;
+            $this->ultimo_cambio_password = ($row[$startcol + 10] !== null) ? (string) $row[$startcol + 10] : null;
+            $this->estado_usuario_id = ($row[$startcol + 11] !== null) ? (int) $row[$startcol + 11] : null;
+            $this->record_password = ($row[$startcol + 12] !== null) ? (string) $row[$startcol + 12] : null;
+            $this->avatar = ($row[$startcol + 13] !== null) ? (string) $row[$startcol + 13] : null;
+            $this->conectado = ($row[$startcol + 14] !== null) ? (boolean) $row[$startcol + 14] : null;
+            $this->ultima_ip = ($row[$startcol + 15] !== null) ? (string) $row[$startcol + 15] : null;
+            $this->empresa_id = ($row[$startcol + 16] !== null) ? (int) $row[$startcol + 16] : null;
+            $this->created_by = ($row[$startcol + 17] !== null) ? (string) $row[$startcol + 17] : null;
+            $this->updated_by = ($row[$startcol + 18] !== null) ? (string) $row[$startcol + 18] : null;
+            $this->created_at = ($row[$startcol + 19] !== null) ? (string) $row[$startcol + 19] : null;
+            $this->updated_at = ($row[$startcol + 20] !== null) ? (string) $row[$startcol + 20] : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -1078,7 +1123,7 @@ abstract class BaseUsuario extends BaseObject implements Persistent
             }
             $this->postHydrate($row, $startcol, $rehydrate);
 
-            return $startcol + 20; // 20 = UsuarioPeer::NUM_HYDRATE_COLUMNS.
+            return $startcol + 21; // 21 = UsuarioPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException("Error populating Usuario object", $e);
@@ -1368,6 +1413,9 @@ abstract class BaseUsuario extends BaseObject implements Persistent
         if ($this->isColumnModified(UsuarioPeer::SALT)) {
             $modifiedColumns[':p' . $index++]  = '`salt`';
         }
+        if ($this->isColumnModified(UsuarioPeer::SKIN)) {
+            $modifiedColumns[':p' . $index++]  = '`skin`';
+        }
         if ($this->isColumnModified(UsuarioPeer::APELLIDO)) {
             $modifiedColumns[':p' . $index++]  = '`apellido`';
         }
@@ -1438,6 +1486,9 @@ abstract class BaseUsuario extends BaseObject implements Persistent
                         break;
                     case '`salt`':
                         $stmt->bindValue($identifier, $this->salt, PDO::PARAM_STR);
+                        break;
+                    case '`skin`':
+                        $stmt->bindValue($identifier, $this->skin, PDO::PARAM_STR);
                         break;
                     case '`apellido`':
                         $stmt->bindValue($identifier, $this->apellido, PDO::PARAM_STR);
@@ -1662,51 +1713,54 @@ abstract class BaseUsuario extends BaseObject implements Persistent
                 return $this->getSalt();
                 break;
             case 4:
-                return $this->getApellido();
+                return $this->getSkin();
                 break;
             case 5:
-                return $this->getUsername();
+                return $this->getApellido();
                 break;
             case 6:
-                return $this->getPassword();
+                return $this->getUsername();
                 break;
             case 7:
-                return $this->getDireccion();
+                return $this->getPassword();
                 break;
             case 8:
-                return $this->getFechaNacimiento();
+                return $this->getDireccion();
                 break;
             case 9:
-                return $this->getUltimoCambioPassword();
+                return $this->getFechaNacimiento();
                 break;
             case 10:
-                return $this->getEstadoUsuarioId();
+                return $this->getUltimoCambioPassword();
                 break;
             case 11:
-                return $this->getRecordPassword();
+                return $this->getEstadoUsuarioId();
                 break;
             case 12:
-                return $this->getAvatar();
+                return $this->getRecordPassword();
                 break;
             case 13:
-                return $this->getConectado();
+                return $this->getAvatar();
                 break;
             case 14:
-                return $this->getUltimaIp();
+                return $this->getConectado();
                 break;
             case 15:
-                return $this->getEmpresaId();
+                return $this->getUltimaIp();
                 break;
             case 16:
-                return $this->getCreatedBy();
+                return $this->getEmpresaId();
                 break;
             case 17:
-                return $this->getUpdatedBy();
+                return $this->getCreatedBy();
                 break;
             case 18:
-                return $this->getCreatedAt();
+                return $this->getUpdatedBy();
                 break;
             case 19:
+                return $this->getCreatedAt();
+                break;
+            case 20:
                 return $this->getUpdatedAt();
                 break;
             default:
@@ -1742,22 +1796,23 @@ abstract class BaseUsuario extends BaseObject implements Persistent
             $keys[1] => $this->getNombre(),
             $keys[2] => $this->getEmail(),
             $keys[3] => $this->getSalt(),
-            $keys[4] => $this->getApellido(),
-            $keys[5] => $this->getUsername(),
-            $keys[6] => $this->getPassword(),
-            $keys[7] => $this->getDireccion(),
-            $keys[8] => $this->getFechaNacimiento(),
-            $keys[9] => $this->getUltimoCambioPassword(),
-            $keys[10] => $this->getEstadoUsuarioId(),
-            $keys[11] => $this->getRecordPassword(),
-            $keys[12] => $this->getAvatar(),
-            $keys[13] => $this->getConectado(),
-            $keys[14] => $this->getUltimaIp(),
-            $keys[15] => $this->getEmpresaId(),
-            $keys[16] => $this->getCreatedBy(),
-            $keys[17] => $this->getUpdatedBy(),
-            $keys[18] => $this->getCreatedAt(),
-            $keys[19] => $this->getUpdatedAt(),
+            $keys[4] => $this->getSkin(),
+            $keys[5] => $this->getApellido(),
+            $keys[6] => $this->getUsername(),
+            $keys[7] => $this->getPassword(),
+            $keys[8] => $this->getDireccion(),
+            $keys[9] => $this->getFechaNacimiento(),
+            $keys[10] => $this->getUltimoCambioPassword(),
+            $keys[11] => $this->getEstadoUsuarioId(),
+            $keys[12] => $this->getRecordPassword(),
+            $keys[13] => $this->getAvatar(),
+            $keys[14] => $this->getConectado(),
+            $keys[15] => $this->getUltimaIp(),
+            $keys[16] => $this->getEmpresaId(),
+            $keys[17] => $this->getCreatedBy(),
+            $keys[18] => $this->getUpdatedBy(),
+            $keys[19] => $this->getCreatedAt(),
+            $keys[20] => $this->getUpdatedAt(),
         );
         $virtualColumns = $this->virtualColumns;
         foreach ($virtualColumns as $key => $virtualColumn) {
@@ -1821,51 +1876,54 @@ abstract class BaseUsuario extends BaseObject implements Persistent
                 $this->setSalt($value);
                 break;
             case 4:
-                $this->setApellido($value);
+                $this->setSkin($value);
                 break;
             case 5:
-                $this->setUsername($value);
+                $this->setApellido($value);
                 break;
             case 6:
-                $this->setPassword($value);
+                $this->setUsername($value);
                 break;
             case 7:
-                $this->setDireccion($value);
+                $this->setPassword($value);
                 break;
             case 8:
-                $this->setFechaNacimiento($value);
+                $this->setDireccion($value);
                 break;
             case 9:
-                $this->setUltimoCambioPassword($value);
+                $this->setFechaNacimiento($value);
                 break;
             case 10:
-                $this->setEstadoUsuarioId($value);
+                $this->setUltimoCambioPassword($value);
                 break;
             case 11:
-                $this->setRecordPassword($value);
+                $this->setEstadoUsuarioId($value);
                 break;
             case 12:
-                $this->setAvatar($value);
+                $this->setRecordPassword($value);
                 break;
             case 13:
-                $this->setConectado($value);
+                $this->setAvatar($value);
                 break;
             case 14:
-                $this->setUltimaIp($value);
+                $this->setConectado($value);
                 break;
             case 15:
-                $this->setEmpresaId($value);
+                $this->setUltimaIp($value);
                 break;
             case 16:
-                $this->setCreatedBy($value);
+                $this->setEmpresaId($value);
                 break;
             case 17:
-                $this->setUpdatedBy($value);
+                $this->setCreatedBy($value);
                 break;
             case 18:
-                $this->setCreatedAt($value);
+                $this->setUpdatedBy($value);
                 break;
             case 19:
+                $this->setCreatedAt($value);
+                break;
+            case 20:
                 $this->setUpdatedAt($value);
                 break;
         } // switch()
@@ -1896,22 +1954,23 @@ abstract class BaseUsuario extends BaseObject implements Persistent
         if (array_key_exists($keys[1], $arr)) $this->setNombre($arr[$keys[1]]);
         if (array_key_exists($keys[2], $arr)) $this->setEmail($arr[$keys[2]]);
         if (array_key_exists($keys[3], $arr)) $this->setSalt($arr[$keys[3]]);
-        if (array_key_exists($keys[4], $arr)) $this->setApellido($arr[$keys[4]]);
-        if (array_key_exists($keys[5], $arr)) $this->setUsername($arr[$keys[5]]);
-        if (array_key_exists($keys[6], $arr)) $this->setPassword($arr[$keys[6]]);
-        if (array_key_exists($keys[7], $arr)) $this->setDireccion($arr[$keys[7]]);
-        if (array_key_exists($keys[8], $arr)) $this->setFechaNacimiento($arr[$keys[8]]);
-        if (array_key_exists($keys[9], $arr)) $this->setUltimoCambioPassword($arr[$keys[9]]);
-        if (array_key_exists($keys[10], $arr)) $this->setEstadoUsuarioId($arr[$keys[10]]);
-        if (array_key_exists($keys[11], $arr)) $this->setRecordPassword($arr[$keys[11]]);
-        if (array_key_exists($keys[12], $arr)) $this->setAvatar($arr[$keys[12]]);
-        if (array_key_exists($keys[13], $arr)) $this->setConectado($arr[$keys[13]]);
-        if (array_key_exists($keys[14], $arr)) $this->setUltimaIp($arr[$keys[14]]);
-        if (array_key_exists($keys[15], $arr)) $this->setEmpresaId($arr[$keys[15]]);
-        if (array_key_exists($keys[16], $arr)) $this->setCreatedBy($arr[$keys[16]]);
-        if (array_key_exists($keys[17], $arr)) $this->setUpdatedBy($arr[$keys[17]]);
-        if (array_key_exists($keys[18], $arr)) $this->setCreatedAt($arr[$keys[18]]);
-        if (array_key_exists($keys[19], $arr)) $this->setUpdatedAt($arr[$keys[19]]);
+        if (array_key_exists($keys[4], $arr)) $this->setSkin($arr[$keys[4]]);
+        if (array_key_exists($keys[5], $arr)) $this->setApellido($arr[$keys[5]]);
+        if (array_key_exists($keys[6], $arr)) $this->setUsername($arr[$keys[6]]);
+        if (array_key_exists($keys[7], $arr)) $this->setPassword($arr[$keys[7]]);
+        if (array_key_exists($keys[8], $arr)) $this->setDireccion($arr[$keys[8]]);
+        if (array_key_exists($keys[9], $arr)) $this->setFechaNacimiento($arr[$keys[9]]);
+        if (array_key_exists($keys[10], $arr)) $this->setUltimoCambioPassword($arr[$keys[10]]);
+        if (array_key_exists($keys[11], $arr)) $this->setEstadoUsuarioId($arr[$keys[11]]);
+        if (array_key_exists($keys[12], $arr)) $this->setRecordPassword($arr[$keys[12]]);
+        if (array_key_exists($keys[13], $arr)) $this->setAvatar($arr[$keys[13]]);
+        if (array_key_exists($keys[14], $arr)) $this->setConectado($arr[$keys[14]]);
+        if (array_key_exists($keys[15], $arr)) $this->setUltimaIp($arr[$keys[15]]);
+        if (array_key_exists($keys[16], $arr)) $this->setEmpresaId($arr[$keys[16]]);
+        if (array_key_exists($keys[17], $arr)) $this->setCreatedBy($arr[$keys[17]]);
+        if (array_key_exists($keys[18], $arr)) $this->setUpdatedBy($arr[$keys[18]]);
+        if (array_key_exists($keys[19], $arr)) $this->setCreatedAt($arr[$keys[19]]);
+        if (array_key_exists($keys[20], $arr)) $this->setUpdatedAt($arr[$keys[20]]);
     }
 
     /**
@@ -1927,6 +1986,7 @@ abstract class BaseUsuario extends BaseObject implements Persistent
         if ($this->isColumnModified(UsuarioPeer::NOMBRE)) $criteria->add(UsuarioPeer::NOMBRE, $this->nombre);
         if ($this->isColumnModified(UsuarioPeer::EMAIL)) $criteria->add(UsuarioPeer::EMAIL, $this->email);
         if ($this->isColumnModified(UsuarioPeer::SALT)) $criteria->add(UsuarioPeer::SALT, $this->salt);
+        if ($this->isColumnModified(UsuarioPeer::SKIN)) $criteria->add(UsuarioPeer::SKIN, $this->skin);
         if ($this->isColumnModified(UsuarioPeer::APELLIDO)) $criteria->add(UsuarioPeer::APELLIDO, $this->apellido);
         if ($this->isColumnModified(UsuarioPeer::USERNAME)) $criteria->add(UsuarioPeer::USERNAME, $this->username);
         if ($this->isColumnModified(UsuarioPeer::PASSWORD)) $criteria->add(UsuarioPeer::PASSWORD, $this->password);
@@ -2009,6 +2069,7 @@ abstract class BaseUsuario extends BaseObject implements Persistent
         $copyObj->setNombre($this->getNombre());
         $copyObj->setEmail($this->getEmail());
         $copyObj->setSalt($this->getSalt());
+        $copyObj->setSkin($this->getSkin());
         $copyObj->setApellido($this->getApellido());
         $copyObj->setUsername($this->getUsername());
         $copyObj->setPassword($this->getPassword());
@@ -2650,6 +2711,7 @@ abstract class BaseUsuario extends BaseObject implements Persistent
         $this->nombre = null;
         $this->email = null;
         $this->salt = null;
+        $this->skin = null;
         $this->apellido = null;
         $this->username = null;
         $this->password = null;

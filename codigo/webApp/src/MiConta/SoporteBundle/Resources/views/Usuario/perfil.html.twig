@@ -2,6 +2,7 @@
 {% block extraScripts %}
     <script src="{{asset('/plugins/datepicker/bootstrap-datepicker.js')}}"></script>
     <script src="{{asset('/plugins/datepicker/locales/bootstrap-datepicker.es.js')}}"></script>
+    <script src="{{ asset('/plugins/select2/select2.min.js') }}" id="script-resource-8"></script>
     <script>
         $(function () {
             $('.datepicker').datepicker({
@@ -9,11 +10,13 @@
                 language: "es",
                 autoclose: true
             });
+             $(".select2").select2();
         });
     </script>
 {% endblock %}
 {% block extraCSS %}
     <link rel="stylesheet" href="{{asset('/plugins/datepicker/datepicker3.css')}}">
+    <link rel="stylesheet" href="{{ asset('/plugins/select2/select2.min.css') }}" id="style-resource-2">
 {%  endblock%}
 {% block body %}
     <div class="box box-primary">
@@ -47,6 +50,15 @@
                         {{form_widget(form.avatar)}}
                         <div class="help-block has-error">
                             {{ form_errors(form.avatar) }}
+                        </div>
+                    </div>
+                </div>
+                        <div class="form-group">
+                    {{ form_label(form.skin, '', { 'label_attr' : { 'class' : 'col-md-3' } } ) }}
+                    <div class="col-md-4">
+                        {{form_widget(form.skin)}}
+                        <div class="help-block has-error">
+                            {{ form_errors(form.skin) }}
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,92 @@
+
+    {% block form %}
+    <form class="form-horizontal"
+        {% if Perfil.Id %}
+            action="{{ path("MiConta_SoporteBundle_Perfil_update", { 'pk': Perfil.Id }) }}"
+        {% else %}
+            action="{{ path("MiConta_SoporteBundle_Perfil_create") }}"
+        {% endif %}
+        method="post" {{ form_enctype(form) }} role="form">
+
+        {{ form_errors(form) }}
+                    {% block form_fieldset_NONE %}
+    <div class="box-body">
+                                    <div class="row">
+                                                                    
+                        <div class="col-md-12 form_field field_text field_nombre">
+                            <div class="form-group">
+                                {{ form_label(form['nombre'], 'Nombre'|trans({}, 'Admin'), {'label_attr':{'class': 'control-label col-md-3'}}) }}
+                                <div class="col-md-9" >
+                                    {{ form_widget(form['nombre'], {'attr':{'placeholder' : 'nombre'}}) }}
+                                    <div class="help-block">
+                                    
+                                        <div class="has-error">{{ form_errors(form['nombre']) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                                            </div>
+                            <div class="row">
+                                                                    
+                        <div class="col-md-12 form_field field_text field_descripcion">
+                            <div class="form-group">
+                                {{ form_label(form['descripcion'], 'Descripcion'|trans({}, 'Admin'), {'label_attr':{'class': 'control-label col-md-3'}}) }}
+                                <div class="col-md-9" >
+                                    {{ form_widget(form['descripcion'], {'attr':{'placeholder' : 'descripcion'}}) }}
+                                    <div class="help-block">
+                                    
+                                        <div class="has-error">{{ form_errors(form['descripcion']) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                                            </div>
+                    </div>
+        {% endblock form_fieldset_NONE %}
+        
+        
+        {{ form_rest(form) }}
+
+        {% block form_buttons %}
+        <div class="box-footer">
+                <center>
+                {% block generic_actions %}
+                        {% block generic_action_save_and_list %}
+            
+                
+                            
+            <button type="submit" name="save-and-list" class="btn btn-success"><i class="fa fa-save"></i> {% trans from "Admingenerator" %}action.generic.save-and-list{% endtrans %}
+        </button>
+    
+
+                
+                        {% endblock generic_action_save_and_list %}
+                    {% block generic_action_list %}
+            
+                
+                            
+            <a class="btn btn-danger" href="{{ path("MiConta_SoporteBundle_Perfil_list", {}) }}"><i class="fa fa-undo"></i> {% trans from "Admingenerator" %}action.generic.list{% endtrans %}
+        </a>
+    
+
+                
+                        {% endblock generic_action_list %}
+        
+        {% block generic_actions_script %}
+    <script src="{{ asset("bundles/admingeneratorgenerator/js/admingenerator/generic-actions.js") }}"></script>
+    <script type="text/javascript">
+        ;(function(window, $, undefined) {
+            $("#generic_actions").agen$genericActions({
+                actionsSelector: 'a.btn'
+            });
+        })(this, jQuery);
+    </script>
+{% endblock generic_actions_script %}
+
+    {% endblock generic_actions %}
+
+                </center>
+        </div>
+        {% endblock form_buttons %}
+    </form>
+    {% endblock form %}

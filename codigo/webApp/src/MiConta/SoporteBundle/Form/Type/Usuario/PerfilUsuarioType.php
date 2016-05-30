@@ -32,7 +32,28 @@ class PerfilUsuarioType extends BaseAbstractType {
             ),
         ));
         $builder->add('direccion', 'text', array(
-            'label' => 'Apellido',  
+            'label' => 'Apellido',
+        ));
+        $builder->add('skin', 'choice', array(
+            'label' => 'Tema (Skin)',
+            'choices' => array(
+                'Azul-Negro' => 'skin-blue',
+                'Blanco-Negro' => 'skin-black',
+                'Morado-Negro' => 'skin-purple',
+                'Verde-Negro' => 'skin-green',
+                'Rojo-Negro' => 'skin-red',
+                'Amarillo-Negro' => 'skin-yellow',
+                
+                'Azul-Blanco' => 'skin-blue-light',
+                'Blanco-Blanco' => 'skin-black-light',
+                'Morado-Blanco' => 'skin-purple-light',
+                'Verde-Blanco' => 'skin-green-light',
+                'Rojo-Blanco' => 'skin-red-light',
+                'Amarillo-Blanco' => 'skin-yellow-light',
+            ),
+            // *this line is important*
+            'choices_as_values' => true,
+            'attr' => array('class' => 'select2 select2-hidden-accessible', 'title'=> 'Personaliza tu combinación de colores ideal', 'style' => 'width: 100%;'),
         ));
         $builder->add('email', 'email', array(
             'label' => 'Correo electrónico',

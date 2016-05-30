@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database name="default" namespace="MiConta\CuentaBundle\Model" defaultIdMethod="native" package="src.MiConta.CuentaBundle.Model">
+    <table name="cuenta" package="src.MiConta.CuentaBundle.Model">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="nombre" type="varchar" size="45" required="true"/>
+        <column name="activo" type="boolean" required="true" default="false"/>
+        <column name="created_by" type="varchar" size="50" required="false"/>
+        <column name="updated_by" type="varchar" size="50" required="false"/>
+        <column name="created_at" type="timestamp" required="false"/>
+        <column name="updated_at" type="timestamp" required="false"/>
+        <behavior name="timestampable"/>
+        <unique>
+            <unique-column name="nombre"/>
+        </unique>
+    </table>
+    <table name="cuenta_hijo" package="src.MiConta.CuentaBundle.Model">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="padre_id" type="integer" required="true"/>
+        <column name="hijo_id" type="integer" required="true"/>
+        <column name="created_by" type="varchar" size="50" required="false"/>
+        <column name="updated_by" type="varchar" size="50" required="false"/>
+        <column name="created_at" type="timestamp" required="false"/>
+        <column name="updated_at" type="timestamp" required="false"/>
+        <behavior name="timestampable"/>
+        <foreign-key foreignTable="cuenta">
+            <reference local="padre_id" foreign="id"/>
+        </foreign-key>
+        <foreign-key foreignTable="cuenta">
+            <reference local="hijo_id" foreign="id"/>
+        </foreign-key>
+    </table>
+</database>

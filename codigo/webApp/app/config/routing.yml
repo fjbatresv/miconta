@@ -1,3 +1,7 @@
+mi_conta_cuenta:
+    resource: "@MiContaCuentaBundle/Resources/config/routing.yml"
+    prefix:   /
+
 gea_soporte:
     resource: "@MiContaSoporteBundle/Resources/config/routing.yml"
     prefix:   /soporte/

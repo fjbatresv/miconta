@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
             new MiConta\SoporteBundle\MiContaSoporteBundle(),
+            new MiConta\CuentaBundle\MiContaCuentaBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -24,6 +24,7 @@ use MiConta\SoporteBundle\Model\UsuarioQuery;
  * @method UsuarioQuery orderByNombre($order = Criteria::ASC) Order by the nombre column
  * @method UsuarioQuery orderByEmail($order = Criteria::ASC) Order by the email column
  * @method UsuarioQuery orderBySalt($order = Criteria::ASC) Order by the salt column
+ * @method UsuarioQuery orderBySkin($order = Criteria::ASC) Order by the skin column
  * @method UsuarioQuery orderByApellido($order = Criteria::ASC) Order by the apellido column
  * @method UsuarioQuery orderByUsername($order = Criteria::ASC) Order by the username column
  * @method UsuarioQuery orderByPassword($order = Criteria::ASC) Order by the password column
@@ -45,6 +46,7 @@ use MiConta\SoporteBundle\Model\UsuarioQuery;
  * @method UsuarioQuery groupByNombre() Group by the nombre column
  * @method UsuarioQuery groupByEmail() Group by the email column
  * @method UsuarioQuery groupBySalt() Group by the salt column
+ * @method UsuarioQuery groupBySkin() Group by the skin column
  * @method UsuarioQuery groupByApellido() Group by the apellido column
  * @method UsuarioQuery groupByUsername() Group by the username column
  * @method UsuarioQuery groupByPassword() Group by the password column
@@ -84,6 +86,7 @@ use MiConta\SoporteBundle\Model\UsuarioQuery;
  * @method Usuario findOneByNombre(string $nombre) Return the first Usuario filtered by the nombre column
  * @method Usuario findOneByEmail(string $email) Return the first Usuario filtered by the email column
  * @method Usuario findOneBySalt(string $salt) Return the first Usuario filtered by the salt column
+ * @method Usuario findOneBySkin(string $skin) Return the first Usuario filtered by the skin column
  * @method Usuario findOneByApellido(string $apellido) Return the first Usuario filtered by the apellido column
  * @method Usuario findOneByUsername(string $username) Return the first Usuario filtered by the username column
  * @method Usuario findOneByPassword(string $password) Return the first Usuario filtered by the password column
@@ -105,6 +108,7 @@ use MiConta\SoporteBundle\Model\UsuarioQuery;
  * @method array findByNombre(string $nombre) Return Usuario objects filtered by the nombre column
  * @method array findByEmail(string $email) Return Usuario objects filtered by the email column
  * @method array findBySalt(string $salt) Return Usuario objects filtered by the salt column
+ * @method array findBySkin(string $skin) Return Usuario objects filtered by the skin column
  * @method array findByApellido(string $apellido) Return Usuario objects filtered by the apellido column
  * @method array findByUsername(string $username) Return Usuario objects filtered by the username column
  * @method array findByPassword(string $password) Return Usuario objects filtered by the password column
@@ -226,7 +230,7 @@ abstract class BaseUsuarioQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `nombre`, `email`, `salt`, `apellido`, `username`, `password`, `direccion`, `fecha_nacimiento`, `ultimo_cambio_password`, `estado_usuario_id`, `record_password`, `avatar`, `conectado`, `ultima_ip`, `empresa_id`, `created_by`, `updated_by`, `created_at`, `updated_at` FROM `usuario` WHERE `id` = :p0';
+        $sql = 'SELECT `id`, `nombre`, `email`, `salt`, `skin`, `apellido`, `username`, `password`, `direccion`, `fecha_nacimiento`, `ultimo_cambio_password`, `estado_usuario_id`, `record_password`, `avatar`, `conectado`, `ultima_ip`, `empresa_id`, `created_by`, `updated_by`, `created_at`, `updated_at` FROM `usuario` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -442,6 +446,35 @@ abstract class BaseUsuarioQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(UsuarioPeer::SALT, $salt, $comparison);
+    }
+
+    /**
+     * Filter the query on the skin column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterBySkin('fooValue');   // WHERE skin = 'fooValue'
+     * $query->filterBySkin('%fooValue%'); // WHERE skin LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $skin The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return UsuarioQuery The current query, for fluid interface
+     */
+    public function filterBySkin($skin = null, $comparison = null)
+    {
+        if (null === $comparison) {
+            if (is_array($skin)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $skin)) {
+                $skin = str_replace('*', '%', $skin);
+                $comparison = Criteria::LIKE;
+            }
+        }
+
+        return $this->addUsingAlias(UsuarioPeer::SKIN, $skin, $comparison);
     }
 
     /**

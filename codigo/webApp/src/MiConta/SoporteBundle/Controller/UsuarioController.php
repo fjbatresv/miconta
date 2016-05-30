@@ -12,6 +12,8 @@ use Propel;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 
 /**
  * Description of UsuarioController
@@ -32,6 +34,7 @@ class UsuarioController extends Controller {
             $Usuario->setApellido($valores['apellido']);
             $Usuario->setEmail($valores['email']);
             $Usuario->setDireccion($valores['direccion']);
+            $Usuario->setSkin($valores['skin']);
             if ($valores['clave']) {
                 if ((ereg_replace("[^0-9]", "", $valores['clave']) && ereg_replace("[0-9]", "", $valores['clave']))) {
                     $Usuario->setPassword(hash('sha1', $valores['clave']));
@@ -49,6 +52,13 @@ class UsuarioController extends Controller {
                 $Usuario->setAvatar('usuarios/avatares/' . $archivo);
             }
             $Usuario->save();
+            $securityContext = $this->get('security.context');
+            $sesion = $request->getSession();
+            $token = new UsernamePasswordToken($Usuario, null, 'frontend', array('ROLE_USUARIO'));
+            $securityContext->setToken($token);
+            $sesion->set('frontend', serialize($token));
+            $event = new InteractiveLoginEvent($request, $token);
+            $this->get("event_dispatcher")->dispatch("security.interactive_login", $event);
             $this->get('session')->getFlashBag()->add('notificaciones', array(
                 'mostrar' => true,
                 'mensaje' => 'Tu perfil se ha actulizado exitosamente',
@@ -61,13 +71,14 @@ class UsuarioController extends Controller {
             $form['apellido']->setData($Usuario->getApellido());
             $form['direccion']->setData($Usuario->getDireccion());
             $form['email']->setData($Usuario->getEmail());
+            $form['skin']->setData($Usuario->getSkin());
             if ($Usuario->getFechaNacimiento()) {
                 $form['fecha_nacimiento']->setData($Usuario->getFechaNacimiento()->format('Y-m-d'));
             }
         }
         return $this->render('MiContaSoporteBundle:Usuario:perfil.html.twig', array(
-            'form' => $form->createView(),
-            'usuario' => $Usuario
+                    'form' => $form->createView(),
+                    'usuario' => $Usuario
         ));
     }
 

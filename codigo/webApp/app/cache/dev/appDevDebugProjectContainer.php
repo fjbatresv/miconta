@@ -704,7 +704,7 @@ class appDevDebugProjectContainer extends Container
         $b = new \Doctrine\DBAL\Configuration();
         $b->setSQLLogger($a);
 
-        return $this->services['doctrine.dbal.default_connection'] = $this->get('doctrine.dbal.connection_factory')->createConnection(array('driver' => 'pdo_mysql', 'host' => '127.0.0.1', 'port' => NULL, 'dbname' => 'metapod', 'user' => 'root', 'password' => NULL, 'charset' => 'UTF8', 'driverOptions' => array()), $b, new \Symfony\Bridge\Doctrine\ContainerAwareEventManager($this), array());
+        return $this->services['doctrine.dbal.default_connection'] = $this->get('doctrine.dbal.connection_factory')->createConnection(array('driver' => 'pdo_mysql', 'host' => '127.0.0.1', 'port' => NULL, 'dbname' => 'mi_conta', 'user' => 'root', 'password' => NULL, 'charset' => 'UTF8', 'driverOptions' => array()), $b, new \Symfony\Bridge\Doctrine\ContainerAwareEventManager($this), array());
     }
 
     /**
@@ -2096,7 +2096,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getPropel_ConfigurationService()
     {
-        return $this->services['propel.configuration'] = new \PropelConfiguration(array('datasources' => array('default' => array('adapter' => 'mysql', 'connection' => array('dsn' => 'mysql:host=127.0.0.1;dbname=metapod;charset=UTF8', 'user' => 'root', 'classname' => 'DebugPDO', 'options' => array(), 'attributes' => array(), 'settings' => array('charset' => array('values' => 'UTF8')), 'model_paths' => array(0 => 'src/', 1 => 'vendor/'))))));
+        return $this->services['propel.configuration'] = new \PropelConfiguration(array('datasources' => array('default' => array('adapter' => 'mysql', 'connection' => array('dsn' => 'mysql:host=127.0.0.1;dbname=mi_conta;charset=UTF8', 'user' => 'root', 'classname' => 'DebugPDO', 'options' => array(), 'attributes' => array(), 'settings' => array('charset' => array('values' => 'UTF8')), 'model_paths' => array(0 => 'src/', 1 => 'vendor/'))))));
     }
 
     /**
@@ -2401,7 +2401,7 @@ class appDevDebugProjectContainer extends Container
         $t = new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($b, $g, new \Symfony\Component\Security\Http\Session\SessionAuthenticationStrategy('migrate'), $o, 'frontend', $r, $s, array('check_path' => '/login_check', 'use_forward' => false, 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'intention' => 'authenticate', 'post_only' => true), $a, $d, NULL);
         $t->setRememberMeServices($p);
 
-        return $this->services['security.firewall.map.context.frontend'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($n, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => $c), 'frontend', $a, $d), 2 => $q, 3 => $t, 4 => new \Symfony\Component\Security\Http\Firewall\RememberMeListener($b, $p, $g, $a, $d, true), 5 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '57493f187d5e54.44544397', $a, $g), 6 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, $this->get('security.access.decision_manager'), $n, $g)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $this->get('security.authentication.trust_resolver'), $o, 'frontend', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($f, $o, 'usuario_login', false), NULL, NULL, $a, false));
+        return $this->services['security.firewall.map.context.frontend'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($n, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => $c), 'frontend', $a, $d), 2 => $q, 3 => $t, 4 => new \Symfony\Component\Security\Http\Firewall\RememberMeListener($b, $p, $g, $a, $d, true), 5 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '574be121635fa4.63159371', $a, $g), 6 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, $this->get('security.access.decision_manager'), $n, $g)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $this->get('security.authentication.trust_resolver'), $o, 'frontend', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($f, $o, 'usuario_login', false), NULL, NULL, $a, false));
     }
 
     /**
@@ -3467,6 +3467,7 @@ class appDevDebugProjectContainer extends Container
         $instance->addPath(($this->targetDirs[3].'/vendor/propel/propel-bundle/Propel/PropelBundle/Resources/views'), 'Propel');
         $instance->addPath(($this->targetDirs[3].'/vendor/cedriclombardot/admingenerator-generator-bundle/Admingenerator/GeneratorBundle/Resources/views'), 'AdmingeneratorGenerator');
         $instance->addPath(($this->targetDirs[3].'/src/MiConta/SoporteBundle/Resources/views'), 'MiContaSoporte');
+        $instance->addPath(($this->targetDirs[3].'/src/MiConta/CuentaBundle/Resources/views'), 'MiContaCuenta');
         $instance->addPath(($this->targetDirs[3].'/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/views'), 'Debug');
         $instance->addPath(($this->targetDirs[3].'/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/views'), 'WebProfiler');
         $instance->addPath(($this->targetDirs[3].'/vendor/sensio/distribution-bundle/Sensio/Bundle/DistributionBundle/Resources/views'), 'SensioDistribution');
@@ -3794,7 +3795,7 @@ class appDevDebugProjectContainer extends Container
     {
         $a = new \Symfony\Component\Security\Core\User\UserChecker();
 
-        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($this->get('security.user.provider.concrete.main'), $a, 'frontend', $this->get('security.encoder_factory'), true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\RememberMeAuthenticationProvider($a, 'gea2015', 'frontend'), 2 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('57493f187d5e54.44544397')), true);
+        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($this->get('security.user.provider.concrete.main'), $a, 'frontend', $this->get('security.encoder_factory'), true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\RememberMeAuthenticationProvider($a, 'gea2015', 'frontend'), 2 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('574be121635fa4.63159371')), true);
 
         $instance->setEventDispatcher($this->get('debug.event_dispatcher'));
 
@@ -3996,6 +3997,7 @@ class appDevDebugProjectContainer extends Container
                 'KnpMenuBundle' => 'Knp\\Bundle\\MenuBundle\\KnpMenuBundle',
                 'WhiteOctoberPagerfantaBundle' => 'WhiteOctober\\PagerfantaBundle\\WhiteOctoberPagerfantaBundle',
                 'MiContaSoporteBundle' => 'MiConta\\SoporteBundle\\MiContaSoporteBundle',
+                'MiContaCuentaBundle' => 'MiConta\\CuentaBundle\\MiContaCuentaBundle',
                 'DebugBundle' => 'Symfony\\Bundle\\DebugBundle\\DebugBundle',
                 'WebProfilerBundle' => 'Symfony\\Bundle\\WebProfilerBundle\\WebProfilerBundle',
                 'SensioDistributionBundle' => 'Sensio\\Bundle\\DistributionBundle\\SensioDistributionBundle',
@@ -4006,7 +4008,7 @@ class appDevDebugProjectContainer extends Container
             'database_driver' => 'pdo_mysql',
             'database_host' => '127.0.0.1',
             'database_port' => NULL,
-            'database_name' => 'metapod',
+            'database_name' => 'mi_conta',
             'database_user' => 'root',
             'database_password' => NULL,
             'mailer_transport' => 'gmail',

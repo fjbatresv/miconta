@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>AdminLTE 2 | Dashboard</title>
+    <title>MiConta V2</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.4 -->
@@ -27,7 +27,7 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body class="skin-blue sidebar-mini fixed">
+  <body class="{{ app.user.skin }} sidebar-mini fixed">
     <div class="wrapper">
 
       <header class="main-header">
@@ -35,9 +35,9 @@
         <!-- Logo -->
         <a href="{{ path('pagina_inicio') }}" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>GE</b>A</span>
+          <span class="logo-mini"><b>M</b>C</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>GE</b>A</span>
+          <span class="logo-lg"><b>Mi</b>Conta</span>
         </a>
 
         <!-- Header Navbar: style can be found in header.less -->
@@ -266,10 +266,10 @@
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left">
-                        <a href="{{ path('usuario_perfil') }}" class="btn btn-default btn-flat"><i class="fa fa-user" ></i>Mi perfil</a>
+                        <a href="{{ path('usuario_perfil') }}" class="btn btn-default btn-flat"><i class="fa fa-user" ></i> Mi perfil</a>
                     </div>
                     <div class="pull-right">
-                        <a href="{{ path('usuario_pre_logout') }}" class="btn btn-default btn-flat"><i class="fa fa-sign-out" ></i>Salir</a>
+                        <a href="{{ path('usuario_pre_logout') }}" class="btn btn-default btn-flat"><i class="fa fa-sign-out" ></i> Salir</a>
                     </div>
                   </li>
                 </ul>
@@ -343,22 +343,22 @@
 
       <footer class="main-footer">
         <div class="pull-right hidden-xs">
-          <b>Version</b> 2.2.0
+          <b>Version</b> 2.0
         </div>
-        <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; {{ "now"|date("Y") }} <a href="http://jmbsystems.tech">JMBSystems</a>.</strong> All rights reserved.
       </footer>
 
       <!-- Control Sidebar -->
       <aside class="control-sidebar control-sidebar-dark">
         <!-- Create the tabs -->
         <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-          <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+          <li class="active"><a aria-expanded="true" href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
           <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
         </ul>
         <!-- Tab panes -->
         <div class="tab-content">
           <!-- Home tab content -->
-          <div class="tab-pane" id="control-sidebar-home-tab">
+          <div class="tab-pane active" id="control-sidebar-home-tab">
             <h3 class="control-sidebar-heading">Recent Activity</h3>
             <ul class="control-sidebar-menu">
               <li>
@@ -535,7 +535,7 @@
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     {#<script src="{{asset('/dist/js/pages/dashboard2.js')}}" type="text/javascript"></script>#}
     <!-- AdminLTE for demo purposes -->
-    <script src="{{asset('/dist/js/demo.js')}}" type="text/javascript"></script>
+{#    <script src="{{asset('/dist/js/demo.js')}}" type="text/javascript"></script>#}
 {% block extraScripts %}{% endblock %}
     <script>
         jQuery(document).ready(function() {

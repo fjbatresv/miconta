@@ -1,0 +1,25 @@
+
+{% extends "::base.html.twig" %}
+
+{% block stylesheets %}    {{ parent() }}
+    {% endblock stylesheets %}
+
+{% block javascripts %}    {{ parent() }}
+        {% block object_actions_script %}
+        {% endblock object_actions_script %}
+{% endblock javascripts %}    {% block title %}
+        {{ parent() }} - {% trans with {'%object%': Perfil.nombre,} from "Admin" %}Editando el perfil "%object%"{% endtrans %}
+    {% endblock title %}
+{% block body %}
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">    {% block page_title %}
+{% trans with {'%object%': Perfil.nombre,} from "Admin" %}Editando el perfil "%object%"{% endtrans %}
+    {% endblock page_title %}
+</h3>
+    </div><!-- /.box-header -->
+    <!-- form start -->    {% block object_actions %}
+        {% endblock object_actions %}
+{% include "MiContaSoporteBundle:PerfilEdit:form.html.twig" with {  } %}
+</div><!-- /.box -->
+{% endblock body %}
